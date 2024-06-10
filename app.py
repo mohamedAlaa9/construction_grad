@@ -7,6 +7,7 @@ st.set_page_config(
     initial_sidebar_state="auto",
     menu_items=None
 )
+
 st.markdown(
     """
     <div style='text-align: center;'>
@@ -15,6 +16,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 # Create a list of credits with their points, required status, and money
 location_credits = [
     ("LEED for Neighborhood Development", 16, False, 0),
@@ -93,39 +95,39 @@ regional_credits = [
 ]
 
 def display_credits(title, credits, parent_checkbox=None):
-    st.write(f"## {title}")
-    total_points = 0
-    total_money = 0
-    all_selected = False
+    with st.expander(title):
+        total_points = 0
+        total_money = 0
+        all_selected = False
 
-    if parent_checkbox:
-        col_1, col_2 = st.columns([4, 1])
-        with col_1:
-          st.write(f"{parent_checkbox[0]}")
-        with col_2:
-          parent_checked = st.checkbox('', value=parent_checkbox[2], key=parent_checkbox[0], disabled=parent_checkbox[2])
-          all_selected = parent_checked
-          if all_selected:
-              total_points += parent_checkbox[1]
-              total_money += parent_checkbox[3]
+        if parent_checkbox:
+            col_1, col_2 = st.columns([4, 1])
+            with col_1:
+                st.write(f"{parent_checkbox[0]}")
+            with col_2:
+                parent_checked = st.checkbox('', value=parent_checkbox[2], key=parent_checkbox[0], disabled=parent_checkbox[2])
+                all_selected = parent_checked
+                if all_selected:
+                    total_points += parent_checkbox[1]
+                    total_money += parent_checkbox[3]
 
-    for text, points, required, money in credits:
-        col_1, col_2, col_3, col_4 = st.columns([4, 1, 1, 1])
-        with col_1:
-            st.write(f"{text} {'(Required)' if required else ''}")
-        with col_2:
-          selected = st.checkbox('', key=text, value=required or all_selected, disabled=required)
-          if selected:
-            total_points += points
-            total_money += money    
-        with col_3:
-            st.write(f"Points: {points}")
-        with col_4:
-            st.write(f"Money: ${money}")
+        for text, points, required, money in credits:
+            col_1, col_2, col_3, col_4 = st.columns([4, 1, 1, 1])
+            with col_1:
+                st.write(f"{text} {'(Required)' if required else ''}")
+            with col_2:
+                selected = st.checkbox('', key=text, value=required or all_selected, disabled=required)
+                if selected:
+                    total_points += points
+                    total_money += money    
+            with col_3:
+                st.write(f"Points: {points}")
+            with col_4:
+                st.write(f"Money: ${money}")
 
-    st.write(f"**Total Points for {title}: {total_points}**")
-    st.write(f"**Total Money for {title}: ${total_money}**")
-    return total_points, total_money
+        st.write(f"**Total Points for {title}: {total_points}**")
+        st.write(f"**Total Money for {title}: ${total_money}**")
+        return total_points, total_money
 
 # Track total points and money across all categories
 total_points = 0
@@ -178,13 +180,25 @@ with col2:
     points, money = display_credits("Regional Priority", regional_credits)
     total_points += points
     total_money += money
+
+# Display total points and money at the bottom of the last column using st.markdown
 with col3:
     st.markdown(
         f"""
-        <div style="margin-top: 100px;">
+        <div style="margin-top: 10px;">
             <p><strong>Total Points Achieved: {total_points}</strong></p>
             <p><strong>Total Money: ${total_money}</strong></p>
         </div>
         """,
         unsafe_allow_html=True
     )
+    if total_points >= 40 and total_points <= 49:
+        st.image("certified.jpeg")
+    elif total_points >= 50 and total_points <= 59:
+        st.image("silver.jpeg")
+    elif total_points >= 60 and total_points <= 79:
+        st.image("gold.jpeg")
+    elif total_points >= 80:
+        st.image("platinum.jpeg")
+    else:
+        st.write("No certificate earned yet.")
