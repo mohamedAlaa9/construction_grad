@@ -19,7 +19,7 @@ st.markdown(
 
 # Create a list of credits with their points, required status, and money
 location_credits = [
-    ("LEED for Neighborhood Development", 16, False, 0),
+    ("LEED for Neighborhood Development", 0, False, 0),
     ("Sensitive Land Protection", 1, False, 0),
     ("High Priority Site and Equitable Development", 2, False, 0),
     ("Surrounding Density and Diverse Uses", 5, False, 0),
@@ -110,15 +110,15 @@ def display_credits(title, credits, parent_checkbox=None):
                 if all_selected:
                     total_points += parent_checkbox[1]
                     total_money += parent_checkbox[3]
-
+                    
         for text, points, required, money in credits:
-            col_1, col_2, col_3, col_4 = st.columns([4, 1, 1, 1])
+            col_1, col_2, col_3, col_4 = st.columns([3, 2, 1, 1])
             with col_1:
                 st.write(f"{text} {'(Required)' if required else ''}")
             with col_2:
-                selected = st.checkbox('', key=text, value=required or all_selected, disabled=required)
-                if selected:
-                    total_points += points
+                selected_points = st.number_input(f"Points for {text}", min_value=0, max_value=points, value=points if required or all_selected else 0, key=text, disabled=required)
+                if selected_points > 0:
+                    total_points += selected_points
                     total_money += money    
             with col_3:
                 st.write(f"Points: {points}")
