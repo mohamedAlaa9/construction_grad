@@ -40,9 +40,11 @@ sustainable_credits = [
 ]
 
 water_credits = [
-    ("Outdoor water use reduction", 2, True, 13000),
-    ("Indoor water use reduction", 6, True, 26270),
+    ("Outdoor water use reduction", 0, True, 0),
+    ("Indoor water use reduction", 0, True, 0),
     ("Building-level water metering", 0, True, 0),
+    ("Outdoor water use reduction_2", 2, False, 13000),
+    ("Indoor water use reduction_2", 6, False, 26270),
     ("Cooling tower water use", 2, False, 0),
     ("Water metering", 1, False, 2000)
 ]
