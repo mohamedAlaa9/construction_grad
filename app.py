@@ -17,7 +17,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
 sustainable_credits = [
     ("Construction activity pollution prevention", 0, True, 15000),
     ("Site assessment", 1, False, 20000),
@@ -27,7 +26,7 @@ sustainable_credits = [
     ("Heat island reduction", 1, False, 17000),
 ]
 
-location_credits =[
+location_credits = [
     ("Bicycle Facilities", 1, False, 3500),
     ("Reduced Parking Footprint", 1, False, 0),
     ("Electric vehicles", 1, False, 28500),
@@ -88,6 +87,7 @@ def display_credits(title, credits, parent_checkbox=None):
         total_points = 0
         total_money = 0
         all_selected = False
+        required_selected = {text: required for text, _, required, _ in credits if required}
 
         if parent_checkbox:
             col_1, col_2 = st.columns([4, 1])
@@ -99,13 +99,14 @@ def display_credits(title, credits, parent_checkbox=None):
                 if all_selected:
                     total_points += parent_checkbox[1]
                     total_money += parent_checkbox[3]
-                    
+
         for text, points, required, money in credits:
             col_1, col_2, col_3, col_4 = st.columns([3, 2, 1, 1])
             with col_1:
                 st.write(f"{text} {'(Required)' if required else ''}")
             with col_2:
-                selected = st.checkbox("", value=required or all_selected, key=text)
+                # Ensure non-required fields are only selectable if required ones are selected
+                selected = st.checkbox("", value=required or all_selected, key=text, disabled=not required and any(not st.session_state.get(key, False) for key, req in required_selected.items() if req))
                 if selected:
                     total_points += points
                     total_money += money    
@@ -191,8 +192,3 @@ with col3:
         st.image("platinum.jpeg")
     else:
         st.write("No certificate earned yet.")
-
-
-
-
-
