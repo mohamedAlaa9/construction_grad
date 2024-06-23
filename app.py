@@ -176,7 +176,7 @@ with col3:
         f"""
         <div style="margin-top: 10px;">
             <p><strong>Total Points Achieved: {total_points}</strong></p>
-            <p><strong>Total Money: ${total_money}</strong></p>
+            <p><strong>Total Money: {total_money} EGP</strong></p>
         </div>
         """,
         unsafe_allow_html=True
