@@ -21,11 +21,10 @@ st.markdown(
 sustainable_credits = [
     ("Construction activity pollution prevention", 0, True, 15000),
     ("Site assessment", 1, False, 20000),
-    ("Site development - protect or restore habitat", 2, False, 32950),
+    ("Protect or restore habitat", 2, False, 32950),
     ("Open space", 1, False, 0),
     ("Rainwater management", 3, False, 0),
     ("Heat island reduction", 2, False, 17000),
-    ("Light pollution reduction", 1, False, 0)
 ]
 
 location_credits =[
@@ -44,7 +43,6 @@ water_credits = [
     ("Building-level water metering", 0, True, 0),
     ("Outdoor water use reduction_2", 2, False, 3000),
     ("Indoor water use reduction_2", 6, False, 0),
-    ("Cooling tower water use", 2, False, 0),
     ("Water metering", 1, False, 2000)
 ]
 
@@ -61,30 +59,23 @@ energy_credits = [
 
 material_credits = [
     ("Storage and collection of recyclables", 0, True, 2800),
-    ("Construction and demolition waste management planning", 0, True, 0),
-    ("Building life-cycle impact reduction", 5, False, 200000),
-    ("Building product disclosure and optimization - environmental product declarations", 2, False, 0),
-    ("Building product disclosure and optimization - sourcing of raw materials", 2, False, 0),
-    ("Building product disclosure and optimization - material ingredients", 2, False, 0),
+    ("Building life-cycle impact reduction", 3, False, 200000),
     ("Construction and demolition waste management", 2, False, 0)
 ]
 
 indoor_credits = [
     ("Minimum IAQ performance", 0, True, 0),
     ("Environmental tobacco smoke control", 0, True, 1500),
-    ("Enhanced IAQ strategies", 2, False, 8100),
-    ("Low-emitting materials", 3, False, 0),
+    ("Enhanced IAQ strategies", 1, False, 8100),
+    ("Low-emitting materials", 1, False, 0),
     ("Construction IAQ management plan", 1, False, 15000),
-    ("IAQ assessment", 2, False, 0),
     ("Thermal comfort", 1, False, 0),
-    ("Interior lighting", 2, False, 7500),
+    ("Interior lighting", 1, False, 7500),
     ("Daylight", 3, False, 10000),
-    ("Quality views", 1, False, 0),
-    ("Acoustic performance", 1, False, 0)
 ]
 
 innovation_credits = [
-    ("Innovation", 5, False, 0),
+    ("Innovation", 0, False, 0),
     ("LEED Accredited Professional", 1, False, 0)
 ]
 
