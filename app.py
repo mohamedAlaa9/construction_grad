@@ -24,7 +24,7 @@ sustainable_credits = [
     ("Protect or restore habitat", 2, False, 32950),
     ("Open space", 1, False, 0),
     ("Rainwater management", 3, False, 0),
-    ("Heat island reduction", 2, False, 17000),
+    ("Heat island reduction", 1, False, 17000),
 ]
 
 location_credits =[
@@ -41,8 +41,8 @@ water_credits = [
     ("Outdoor water use reduction", 0, True, 10000),
     ("Indoor water use reduction", 0, True, 26270),
     ("Building-level water metering", 0, True, 0),
-    ("Outdoor water use reduction_2", 2, False, 3000),
-    ("Indoor water use reduction_2", 6, False, 0),
+    ("Outdoor water use reduction_2", 1, False, 3000),
+    ("Indoor water use reduction_2", 4, False, 0),
     ("Water metering", 1, False, 2000)
 ]
 
@@ -52,7 +52,7 @@ energy_credits = [
     ("Building-level energy metering", 0, True, 0),
     ("Fundamental refrigerant management", 0, True, 0),
     ("Enhanced commissioning", 6, False, 30000),
-    ("Optimize energy performance", 18, False, 10500),
+    ("Optimize energy performance", 13, False, 10500),
     ("Advanced energy metering", 1, False, 24000),
     ("Renewable energy", 5, False, 41800),
 ]
