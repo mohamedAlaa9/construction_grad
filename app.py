@@ -31,7 +31,7 @@ location_credits =[
     ("Bicycle Facilities", 1, False, 3500),
     ("Reduced Parking Footprint", 1, False, 0),
     ("Electric vehicles", 1, False, 28500),
-    ("Surrounding Density and Diverse Uses", 5, False, 0),
+    ("Surrounding Density and Diverse Uses", 4, False, 0),
     ("Sensitive Land Protection", 1, False, 0),
     ("Access to Quality Transit", 5, False, 0),
     ("High Priority Site and Equitable Development", 1, False, 10000),
@@ -105,7 +105,7 @@ def display_credits(title, credits, parent_checkbox=None):
             with col_1:
                 st.write(f"{text} {'(Required)' if required else ''}")
             with col_2:
-                selected = st.checkbox("", value=required or all_selected, key=text, disabled=required)
+                selected = st.checkbox("", value=required or all_selected, key=text)
                 if selected:
                     total_points += points
                     total_money += money    
