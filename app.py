@@ -17,17 +17,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Create a list of credits with their points, required status, and money
-location_credits = [
-    ("LEED for Neighborhood Development", 0, False, 0),
-    ("Sensitive Land Protection", 1, False, 0),
-    ("High Priority Site and Equitable Development", 2, False, 0),
-    ("Surrounding Density and Diverse Uses", 5, False, 0),
-    ("Access to Quality Transit", 5, False, 0),
-    ("Bicycle Facilities", 1, False, 0),
-    ("Reduced Parking Footprint", 1, False, 0),
-    ("Electric Vehicles", 1, False, 0)
-]
 
 sustainable_credits = [
     ("Construction activity pollution prevention", 0, True, 15000),
@@ -39,12 +28,22 @@ sustainable_credits = [
     ("Light pollution reduction", 1, False, 0)
 ]
 
+location_credits =[
+    ("Bicycle Facilities", 1, False, 3500),
+    ("Reduced Parking Footprint", 1, False, 0),
+    ("Electric vehicles", 1, False, 28500),
+    ("Surrounding Density and Diverse Uses", 5, False, 0),
+    ("Sensitive Land Protection", 1, False, 0),
+    ("Access to Quality Transit", 5, False, 0),
+    ("High Priority Site and Equitable Development", 1, False, 10000),
+]
+
 water_credits = [
-    ("Outdoor water use reduction", 0, True, 0),
-    ("Indoor water use reduction", 0, True, 0),
+    ("Outdoor water use reduction", 0, True, 10000),
+    ("Indoor water use reduction", 0, True, 26270),
     ("Building-level water metering", 0, True, 0),
-    ("Outdoor water use reduction_2", 2, False, 13000),
-    ("Indoor water use reduction_2", 6, False, 26270),
+    ("Outdoor water use reduction_2", 2, False, 3000),
+    ("Indoor water use reduction_2", 6, False, 0),
     ("Cooling tower water use", 2, False, 0),
     ("Water metering", 1, False, 2000)
 ]
@@ -57,10 +56,7 @@ energy_credits = [
     ("Enhanced commissioning", 6, False, 30000),
     ("Optimize energy performance", 18, False, 10500),
     ("Advanced energy metering", 1, False, 24000),
-    ("Demand response", 2, False, 0),
-    ("Renewable energy production", 3, False, 41800),
-    ("Enhanced refrigerant management", 1, False, 0),
-    ("Green power and carbon offsets", 2, False, 0)
+    ("Renewable energy", 5, False, 41800),
 ]
 
 material_credits = [
@@ -118,9 +114,9 @@ def display_credits(title, credits, parent_checkbox=None):
             with col_1:
                 st.write(f"{text} {'(Required)' if required else ''}")
             with col_2:
-                selected_points = st.number_input(f"Points for {text}", min_value=0, max_value=points, value=points if required or all_selected else 0, key=text, disabled=required)
-                if selected_points > 0:
-                    total_points += selected_points
+                selected = st.checkbox("", value=required or all_selected, key=text, disabled=required)
+                if selected:
+                    total_points += points
                     total_money += money    
             with col_3:
                 st.write(f"Points: {points}")
@@ -139,7 +135,7 @@ total_money = 0
 col1, spacer1, col2, spacer2, col3 = st.columns([4, 1, 4, 1, 4])
 
 with col1:
-    points, money = display_credits("Location & Transportation", location_credits[1:], parent_checkbox=location_credits[0])
+    points, money = display_credits("Location & Transportation", location_credits)
     total_points += points
     total_money += money
 
@@ -204,3 +200,8 @@ with col3:
         st.image("platinum.jpeg")
     else:
         st.write("No certificate earned yet.")
+
+
+
+
+
