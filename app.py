@@ -106,7 +106,7 @@ def display_credits(title, credits, parent_checkbox=None):
                 st.write(f"{text} {'(Required)' if required else ''}")
             with col_2:
                 # Ensure non-required fields are only selectable if required ones are selected
-                selected = st.checkbox("", value=required or all_selected, key=text, disabled=not required and any(not st.session_state.get(key, False) for key, req in required_selected.items() if req))
+                selected = st.checkbox("", key=text, disabled=not required and any(not st.session_state.get(key, False) for key, req in required_selected.items() if req))
                 if selected:
                     total_points += points
                     total_money += money    
